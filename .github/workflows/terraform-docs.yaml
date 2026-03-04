@@ -1,0 +1,22 @@
+name: Terraform Docs Check
+
+on:
+  pull_request:
+    paths:
+      - '**.tf'
+      - '.terraform-docs.yaml'
+      - '.github/workflows/terraform-docs.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '**.tf'
+      - '.terraform-docs.yaml'
+  workflow_dispatch:
+
+jobs:
+  terraform-docs:
+    uses: islamelkadi/reusable-cicd-workflows/.github/workflows/terraform-docs.yaml@main
+    with:
+      working_directory: '.'
+      config_file: '.terraform-docs.yaml'

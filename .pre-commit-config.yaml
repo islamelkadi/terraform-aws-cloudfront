@@ -1,0 +1,51 @@
+repos:
+- repo: local
+  hooks:
+    - id: tflint
+      name: Terraform lint
+      entry: tflint
+      args: ["--recursive"]
+      language: system
+      files: \.(tf|tofu|tfvars)$
+      exclude: \.terraform/.*$
+      pass_filenames: false
+      always_run: true
+
+    - id: terraform-fmt
+      name: Terraform fmt
+      entry: terraform fmt
+      args: ["-recursive"]
+      language: system
+      files: \.(tf|tofu|tfvars)$
+      exclude: \.terraform/.*$
+      pass_filenames: false
+      always_run: true
+
+    - id: terraform-docs
+      name: Terraform docs
+      entry: terraform-docs
+      args: ["--recursive", "--config", ".terraform-docs.yaml", "."]
+      language: system
+      files: \.(tf|tofu)$
+      exclude: \.terraform/.*$
+      pass_filenames: false
+      always_run: true
+
+    - id: terraform-validate
+      name: Terraform validate
+      entry: terraform validate
+      language: system
+      files: \.(tf|tfvars)$
+      exclude: \.terraform/.*$
+      pass_filenames: false
+      always_run: true
+
+    - id: checkov
+      name: Checkov security scan
+      entry: checkov
+      args: ["--config-file", ".checkov.yml"]
+      language: system
+      files: \.(tf|tfvars)$
+      exclude: \.terraform/.*$
+      pass_filenames: false
+      always_run: true

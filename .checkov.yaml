@@ -1,0 +1,35 @@
+# .checkov.yml
+
+# Frameworks à scanner
+framework:
+  - terraform
+
+# Format de sortie
+output:
+  - cli
+
+# Options générales
+quiet: true
+compact: true
+download-external-modules: true
+evaluate-variables: true
+
+# Répertoires à scanner
+directory:
+  - .
+
+skip-check:
+  - CKV_TF_1    # Ensure Terraform module sources use a commit hash
+
+# Répertoires à exclure
+skip-path:
+  - .terraform/
+  - .terragrunt-cache/
+  - "**/.terraform/"
+  - "**/.terraform.lock.hcl"
+  - "**/.terragrunt-cache/"
+  - "**/terraform"
+  - "**/terraform-output.json"
+  - "*.tfstate*"
+  - "**/*.tfstate*"
+  - terraform-output.json

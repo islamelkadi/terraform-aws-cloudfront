@@ -1,0 +1,21 @@
+name: Terraform Security Scan (SAST)
+
+on:
+  push:
+    paths:
+      - '**.tf'
+      - '.checkov.yaml'
+      - '.github/workflows/checkov.yml'
+  pull_request:
+    paths:
+      - '**.tf'
+      - '.checkov.yaml'
+      - '.github/workflows/checkov.yml'
+  workflow_dispatch:
+
+jobs:
+  checkov:
+    uses: islamelkadi/reusable-cicd-workflows/.github/workflows/checkov-scan.yaml@main
+    with:
+      working_directory: '.'
+      config_file: '.checkov.yaml'

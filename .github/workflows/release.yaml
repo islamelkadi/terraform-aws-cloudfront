@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: 
+      - "Terraform Lint and Format Check"
+      - "Terraform Security Scan (SAST)"
+      - "Terraform Docs Check"
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    uses: islamelkadi/reusable-cicd-workflows/.github/workflows/terraform-release.yaml@main
+    with:
+      node_version: 'lts/*'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
