@@ -5,12 +5,13 @@ Creates an AWS CloudFront distribution for static website hosting with S3 origin
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Security Controls](#security-controls)
+- [Security](#security)
 - [Features](#features)
 - [Usage](#usage)
 - [Requirements](#requirements)
+- [MCP Servers](#mcp-servers)
+- [License](#license)
 
----
 
 ## Prerequisites
 
@@ -27,7 +28,11 @@ make bootstrap
 
 This will install/upgrade: tfenv, Terraform (via tfenv), tflint, terraform-docs, checkov, and pre-commit.
 
-## Security Controls
+
+
+## Security
+
+### Security Controls
 
 This module implements security controls to comply with:
 - AWS Foundational Security Best Practices (FSBP)
@@ -65,6 +70,37 @@ This module implements security controls to comply with:
 
 For complete security standards and implementation details, see [AWS Security Standards](../../../.kiro/steering/aws/aws-security-standards.md).
 
+### Environment-Based Security Controls
+
+Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
+
+| Control | Dev | Staging | Prod |
+|---------|-----|---------|------|
+| TLS 1.2+ minimum | Required | Required | Required |
+| HTTPS enforcement | Required | Required | Required |
+| Access logging | Optional | Required | Required |
+| WAF integration | Optional | Recommended | Required |
+| Origin Access Control | Recommended | Required | Required |
+
+For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
+
+### Security Best Practices
+
+**Production Distributions:**
+- Use TLS 1.2+ minimum protocol version
+- Enable HTTPS-only or redirect-to-https
+- Enable access logging to S3
+- Use Origin Access Control (OAC) for S3 origins
+- Use ACM certificates for custom domains
+- Configure WAF for additional protection
+- Monitor CloudWatch metrics
+
+**Development Distributions:**
+- TLS 1.2+ still required
+- Access logging optional for cost savings
+- OAC still recommended
+
+For complete security standards and implementation details, see [AWS Security Standards](../../../.kiro/steering/aws/aws-security-standards.md).
 ## Features
 
 - **S3 Origin Support**: Configure S3 bucket as origin with Origin Access Control (OAC) or legacy OAI
@@ -215,35 +251,6 @@ module "cloudfront" {
 }
 ```
 
-## Security Controls
-
-This module enforces security controls when `security_controls` is provided from the metadata module:
-
-### Encryption in Transit
-- **Control**: `require_encryption_in_transit`
-- **Enforcement**: Requires `viewer_protocol_policy` to be `redirect-to-https` or `https-only`
-- **Override**: `disable_https_requirement` (requires justification)
-
-### TLS Version
-- **Control**: `require_encryption_in_transit`
-- **Enforcement**: Requires `minimum_protocol_version` to be TLSv1.2 or higher
-- **Override**: Not overridable (security baseline)
-
-### Access Logging
-- **Control**: `require_access_logging`
-- **Enforcement**: Requires `enable_logging=true` and `logging_bucket` to be set
-- **Override**: `disable_logging_requirement` (requires justification)
-
-### Security Control Overrides
-
-Use `security_control_overrides` to selectively disable controls with documented justification:
-
-```hcl
-security_control_overrides = {
-  disable_logging_requirement = true
-  justification = "Development environment, cost optimization"
-}
-```
 
 ## Origin Access Control (OAC) vs Origin Access Identity (OAI)
 
@@ -315,27 +322,11 @@ custom_error_responses = [
 
 This allows client-side routing to work correctly.
 
-## Examples
-
-See [example/](example/) for a complete working example with all features.
 
 ## License
 
 MIT Licensed. See LICENSE for full details.
 
-## Environment-Based Security Controls
-
-Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
-
-| Control | Dev | Staging | Prod |
-|---------|-----|---------|------|
-| TLS 1.2+ minimum | Required | Required | Required |
-| HTTPS enforcement | Required | Required | Required |
-| Access logging | Optional | Required | Required |
-| WAF integration | Optional | Recommended | Required |
-| Origin Access Control | Recommended | Required | Required |
-
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
 
 ## MCP Servers
 
