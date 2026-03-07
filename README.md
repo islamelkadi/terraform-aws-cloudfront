@@ -114,8 +114,7 @@ For complete security standards and implementation details, see [AWS Security St
 
 ```hcl
 module "cloudfront" {
-  source = "../../modules/terraform-aws-cloudfront"
-
+  source = "github.com/islamelkadi/terraform-aws-cloudfront"
   namespace   = "example"
   environment = "prod"
   name        = "operations-dashboard"
@@ -142,8 +141,7 @@ module "cloudfront" {
 
 ```hcl
 module "cloudfront" {
-  source = "../../modules/terraform-aws-cloudfront"
-
+  source = "github.com/islamelkadi/terraform-aws-cloudfront"
   namespace   = "example"
   environment = "prod"
   name        = "operations-dashboard"
@@ -224,8 +222,7 @@ module "cloudfront" {
 
 ```hcl
 module "cloudfront" {
-  source = "../../modules/terraform-aws-cloudfront"
-
+  source = "github.com/islamelkadi/terraform-aws-cloudfront"
   namespace   = "example"
   environment = "prod"
   name        = "static-site"
@@ -343,8 +340,7 @@ Both servers run via `uvx` and require no additional installation beyond the [bo
 # ============================================================================
 
 module "basic_cloudfront" {
-  source = "../"
-
+  source = "github.com/islamelkadi/terraform-aws-cloudfront"
   namespace   = var.namespace
   environment = var.environment
   name        = "static-website"
@@ -406,8 +402,7 @@ module "basic_cloudfront" {
 # ============================================================================
 
 module "production_cloudfront" {
-  source = "../"
-
+  source = "github.com/islamelkadi/terraform-aws-cloudfront"
   namespace   = var.namespace
   environment = "prod"
   name        = "production-website"
@@ -475,8 +470,7 @@ module "production_cloudfront" {
 # ============================================================================
 
 module "multi_behavior_cloudfront" {
-  source = "../"
-
+  source = "github.com/islamelkadi/terraform-aws-cloudfront"
   namespace   = var.namespace
   environment = var.environment
   name        = "multi-behavior"
