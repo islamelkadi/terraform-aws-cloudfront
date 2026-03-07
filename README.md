@@ -10,7 +10,6 @@ Creates an AWS CloudFront distribution for static website hosting with S3 origin
 - [Usage](#usage)
 - [Requirements](#requirements)
 - [MCP Servers](#mcp-servers)
-- [License](#license)
 
 
 ## Prerequisites
@@ -323,11 +322,6 @@ custom_error_responses = [
 This allows client-side routing to work correctly.
 
 
-## License
-
-MIT Licensed. See LICENSE for full details.
-
-
 ## MCP Servers
 
 This module includes two [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers configured in `.kiro/settings/mcp.json` for use with Kiro:
@@ -635,7 +629,3 @@ module "multi_behavior_cloudfront" {
 
 See [example/](example/) for a complete working example with all features.
 
-## License
-
-MIT Licensed. See [LICENSE](LICENSE) for full details.
-<!-- END_TF_DOCS -->
