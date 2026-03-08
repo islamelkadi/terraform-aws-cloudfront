@@ -5,12 +5,12 @@ on:
     paths:
       - '**.tf'
       - '.checkov.yaml'
-      - '.github/workflows/checkov.yml'
+      - '.github/workflows/terraform-security.yaml'
   pull_request:
     paths:
       - '**.tf'
       - '.checkov.yaml'
-      - '.github/workflows/checkov.yml'
+      - '.github/workflows/terraform-security.yaml'
   workflow_dispatch:
 
 jobs:
