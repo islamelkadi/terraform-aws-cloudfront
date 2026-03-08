@@ -1,52 +1,36 @@
 # Checkov configuration for terraform-aws-cloudfront
 # Suppressions for checks that are not applicable to example/demo code
 
-
 skip-check:
   # KMS IAM Policy - Intentional for flexible key policies in examples
-  - id: CKV_AWS_111
-    comment: "KMS module uses flexible IAM policies for demonstration purposes. Users should customize based on their security requirements."
-  - id: CKV_AWS_356
-    comment: "KMS module uses wildcard resources for flexibility in examples. Users should restrict in production."
-  - id: CKV_AWS_109
-    comment: "KMS module IAM policies are intentionally permissive for examples. Users should apply least privilege in production."
+  - CKV_AWS_111  # KMS module uses flexible IAM policies for demonstration purposes
+  - CKV_AWS_356  # KMS module uses wildcard resources for flexibility in examples
+  - CKV_AWS_109  # KMS module IAM policies are intentionally permissive for examples
   
   # Terraform Module Sources - Using semantic versioning tags
-  - id: CKV_TF_2
-    comment: "Using semantic version tags (?ref=v1.0.0) which is a valid versioning strategy for stable releases."
+  - CKV_TF_1  # Using semantic version tags (?ref=v1.0.0) instead of commit hashes
+  - CKV_TF_2  # Using semantic version tags (?ref=v1.0.0) which is a valid versioning strategy
   
   # S3 Lifecycle - Abort incomplete uploads
-  - id: CKV_AWS_300
-    comment: "Abort incomplete multipart upload rules are optional and use-case specific. Users should configure based on their requirements."
+  - CKV_AWS_300  # Abort incomplete multipart upload rules are optional and use-case specific
   
   # CloudFront Origin Failover - Optional high availability feature
-  - id: CKV_AWS_310
-    comment: "Origin failover requires multiple origins and adds complexity. Users should enable based on their availability requirements."
+  - CKV_AWS_310  # Origin failover requires multiple origins and adds complexity
   
   # CloudFront Geo Restriction - Optional feature
-  - id: CKV_AWS_374
-    comment: "Geo restrictions are use-case specific. Users should configure based on their content distribution requirements."
+  - CKV_AWS_374  # Geo restrictions are use-case specific
   
   # CloudFront TLS Version - Example uses default certificate
-  - id: CKV_AWS_174
-    comment: "Custom TLS configuration requires custom SSL certificate. Users should configure when using custom domains."
+  - CKV_AWS_174  # Custom TLS configuration requires custom SSL certificate
   
   # CloudFront Response Headers Policy - Optional security feature
-  - id: CKV2_AWS_32
-    comment: "Response headers policies are optional. Users should configure based on their security requirements."
+  - CKV2_AWS_32  # Response headers policies are optional
   
   # S3 Event Notifications - Use-case specific
-  - id: CKV2_AWS_62
-    comment: "S3 event notifications are use-case specific. Users should enable based on their event processing requirements."
+  - CKV2_AWS_62  # S3 event notifications are use-case specific
   
   # CloudFront WAF with Log4j Protection - Optional security feature
-  - id: CKV2_AWS_47
-    comment: "WAF with Log4j protection adds cost and complexity. Users should enable based on their security and budget requirements."
+  - CKV2_AWS_47  # WAF with Log4j protection adds cost and complexity
   
   # S3 Cross-Region Replication - Optional disaster recovery feature
-  - id: CKV_AWS_144
-    comment: "Cross-region replication adds cost and complexity. Users should enable based on their disaster recovery requirements."
-  
-  # Terraform Module Sources - Using semantic versioning tags (commit hash)
-  - id: CKV_TF_1
-    comment: "Using semantic version tags (?ref=v1.0.0) instead of commit hashes for better maintainability and readability."
+  - CKV_AWS_144  # Cross-region replication adds cost and complexity
