@@ -1,5 +1,9 @@
 # Terraform AWS CloudFront Module
 
+[![Terraform Security](https://github.com/islamelkadi/terraform-aws-cloudfront/actions/workflows/terraform-security.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-cloudfront/actions/workflows/terraform-security.yaml)
+[![Terraform Lint & Validation](https://github.com/islamelkadi/terraform-aws-cloudfront/actions/workflows/terraform-lint.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-cloudfront/actions/workflows/terraform-lint.yaml)
+[![Terraform Docs](https://github.com/islamelkadi/terraform-aws-cloudfront/actions/workflows/terraform-docs.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-cloudfront/actions/workflows/terraform-docs.yaml)
+
 Creates an AWS CloudFront distribution for static website hosting with S3 origin, SSL/TLS support, and comprehensive security controls.
 
 ## Table of Contents
