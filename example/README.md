@@ -249,3 +249,44 @@ terraform destroy -var-file=params/input.tfvars
 - [CloudFront Pricing](https://aws.amazon.com/cloudfront/pricing/)
 - [Terraform AWS CloudFront Distribution](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution)
 
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.14.3 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.34 |
+
+## Providers
+
+No providers.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_basic_cloudfront"></a> [basic\_cloudfront](#module\_basic\_cloudfront) | ../ | n/a |
+| <a name="module_kms_key"></a> [kms\_key](#module\_kms\_key) | git::https://github.com/islamelkadi/terraform-aws-kms.git | v1.0.0 |
+| <a name="module_logging_bucket"></a> [logging\_bucket](#module\_logging\_bucket) | git::https://github.com/islamelkadi/terraform-aws-s3.git | v1.0.0 |
+| <a name="module_multi_behavior_cloudfront"></a> [multi\_behavior\_cloudfront](#module\_multi\_behavior\_cloudfront) | ../ | n/a |
+| <a name="module_origin_bucket"></a> [origin\_bucket](#module\_origin\_bucket) | git::https://github.com/islamelkadi/terraform-aws-s3.git | v1.0.0 |
+| <a name="module_production_cloudfront"></a> [production\_cloudfront](#module\_production\_cloudfront) | ../ | n/a |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region for deployment | `string` | `"us-east-1"` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | `"dev"` | no |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace (organization/team name) | `string` | `"example"` | no |
+| <a name="input_region"></a> [region](#input\_region) | AWS region for resources | `string` | `"us-east-1"` | no |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
