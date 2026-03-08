@@ -80,6 +80,28 @@ Security controls are automatically applied based on the environment through the
 
 For full details on security profiles and how controls vary by environment, see the [Security Profiles](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) documentation.
 
+### Security Scan Suppressions
+
+This module suppresses certain Checkov security checks that are either not applicable to example/demo code or represent optional features. The following checks are suppressed in `.checkov.yaml`:
+
+**Module Source Versioning (CKV_TF_1, CKV_TF_2)**
+- Suppressed because we use semantic version tags (`?ref=v1.0.0`) instead of commit hashes for better maintainability and readability
+- Semantic versioning is a valid and widely-accepted versioning strategy for stable releases
+
+**KMS IAM Policies (CKV_AWS_111, CKV_AWS_356, CKV_AWS_109)**
+- Suppressed in example code where KMS modules use flexible IAM policies for demonstration purposes
+- Production deployments should customize KMS policies based on specific security requirements and apply least privilege principles
+
+**S3 and CloudFront Optional Features**
+- **S3 Lifecycle Rules (CKV_AWS_300)**: Abort incomplete multipart upload rules are optional and use-case specific
+- **CloudFront Origin Failover (CKV_AWS_310)**: Requires multiple origins and adds complexity; enable based on availability requirements
+- **CloudFront Geo Restrictions (CKV_AWS_374)**: Use-case specific; configure based on content distribution requirements
+- **CloudFront TLS Version (CKV_AWS_174)**: Custom TLS configuration requires custom SSL certificate; configure when using custom domains
+- **CloudFront Response Headers Policy (CKV2_AWS_32)**: Optional security feature; configure based on security requirements
+- **S3 Event Notifications (CKV2_AWS_62)**: Use-case specific; enable based on event processing requirements
+- **CloudFront WAF with Log4j Protection (CKV2_AWS_47)**: Optional security feature that adds cost and complexity
+- **S3 Cross-Region Replication (CKV_AWS_144)**: Optional disaster recovery feature that adds cost and complexity
+
 ## Features
 
 - **S3 Origin Support**: Configure S3 bucket as origin with Origin Access Control (OAC) or legacy OAI
