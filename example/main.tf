@@ -1,9 +1,12 @@
+# Primary Module Example - This demonstrates the terraform-aws-cloudfront module
+# Supporting infrastructure (S3 buckets) is defined in separate files
+# to keep this example focused on the module's core functionality.
+#
 # CloudFront Distribution Examples
 # Demonstrates various CloudFront configurations with security control overrides
 
 # ============================================================================
 # Example 1: Basic Static Website (Minimal Configuration)
-# Uses a fictitious S3 bucket origin - replace with your actual bucket
 # Override: Logging disabled for cost optimization in dev
 # ============================================================================
 
@@ -15,8 +18,8 @@ module "basic_cloudfront" {
   name        = "static-website"
   region      = var.region
 
-  # S3 origin configuration - replace with your actual bucket
-  origin_domain_name        = "my-static-website-bucket.s3.us-east-1.amazonaws.com"
+  # Direct reference to s3.tf module output
+  origin_domain_name        = module.origin_bucket.bucket_domain_name
   use_origin_access_control = true
 
   # Use CloudFront default certificate (no custom domain)
@@ -78,8 +81,8 @@ module "production_cloudfront" {
   name        = "production-website"
   region      = var.region
 
-  # S3 origin configuration - replace with your actual bucket
-  origin_domain_name        = "my-production-bucket.s3.us-east-1.amazonaws.com"
+  # Direct reference to s3.tf module output
+  origin_domain_name        = module.origin_bucket.bucket_domain_name
   use_origin_access_control = true
 
   # Custom domain with ACM certificate (must be in us-east-1)
@@ -89,9 +92,9 @@ module "production_cloudfront" {
   # HTTPS enforcement
   minimum_protocol_version = "TLSv1.2_2021"
 
-  # Access logging enabled - replace with your actual logging bucket
+  # Direct reference to s3.tf module output
   enable_logging          = true
-  logging_bucket          = "my-cloudfront-logs-bucket.s3.amazonaws.com"
+  logging_bucket          = module.logging_bucket.bucket_domain_name
   logging_prefix          = "cloudfront/"
   logging_include_cookies = false
 
@@ -147,8 +150,8 @@ module "multi_behavior_cloudfront" {
   name        = "multi-behavior"
   region      = var.region
 
-  # S3 origin configuration - replace with your actual bucket
-  origin_domain_name        = "my-app-bucket.s3.us-east-1.amazonaws.com"
+  # Direct reference to s3.tf module output
+  origin_domain_name        = module.origin_bucket.bucket_domain_name
   use_origin_access_control = true
 
   # Default cache behavior for HTML
