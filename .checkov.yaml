@@ -1,9 +1,6 @@
 # Checkov configuration for terraform-aws-cloudfront
 # Suppressions for checks that are not applicable to example/demo code
 
-# Skip scanning external modules directory
-skip-path:
-  - .external_modules/**
 
 skip-check:
   # KMS IAM Policy - Intentional for flexible key policies in examples
