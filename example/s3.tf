@@ -12,7 +12,7 @@
 #   origin_domain_name = module.origin_bucket.bucket_domain_name
 
 module "kms_key" {
-  source = "git::https://github.com/islamelkadi/terraform-aws-kms.git"
+  source = "git::https://github.com/islamelkadi/terraform-aws-kms.git?ref=v1.0.0"
 
   namespace   = var.namespace
   environment = var.environment
@@ -29,7 +29,7 @@ module "kms_key" {
 }
 
 module "origin_bucket" {
-  source = "git::https://github.com/islamelkadi/terraform-aws-s3.git"
+  source = "git::https://github.com/islamelkadi/terraform-aws-s3.git?ref=v1.0.0"
 
   namespace   = var.namespace
   environment = var.environment
@@ -51,7 +51,7 @@ module "origin_bucket" {
 }
 
 module "logging_bucket" {
-  source = "git::https://github.com/islamelkadi/terraform-aws-s3.git"
+  source = "git::https://github.com/islamelkadi/terraform-aws-s3.git?ref=v1.0.0"
 
   namespace   = var.namespace
   environment = var.environment
