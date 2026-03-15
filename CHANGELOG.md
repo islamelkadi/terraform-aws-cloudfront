@@ -1,3 +1,16 @@
+## [1.1.0](https://github.com/islamelkadi/terraform-aws-cloudfront/compare/v1.0.2...v1.1.0) (2026-03-15)
+
+
+### Features
+
+* add manual triggering to release workflow ([b15dc5f](https://github.com/islamelkadi/terraform-aws-cloudfront/commit/b15dc5f56b845850b4a2df84c885cac0208202fb))
+
+
+### Documentation
+
+* add GitHub Actions workflow status badges ([db7c166](https://github.com/islamelkadi/terraform-aws-cloudfront/commit/db7c1669fc645915bfe0425430a851a506347f85))
+* add security scan suppressions section to README ([2757fa0](https://github.com/islamelkadi/terraform-aws-cloudfront/commit/2757fa0473645f714c3c739ad55f5bb1590e4393))
+
 ## [1.0.2](https://github.com/islamelkadi/terraform-aws-cloudfront/compare/v1.0.1...v1.0.2) (2026-03-08)
 
 
